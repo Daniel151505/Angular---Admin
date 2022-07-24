@@ -9,7 +9,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { GraficalComponent } from './grafical/grafical.component';
 import { PagesComponent } from './pages.component';
-import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -23,15 +22,14 @@ import { ChartsModule } from 'ng2-charts';
     DashboardComponent,
     ProgressComponent,
     GraficalComponent,
-    PagesComponent
+    PagesComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     SharedModule,
     RouterModule,
-    ComponentsModule,
-    ChartsModule
+    ComponentsModule
   ]
 })
 export class PagesModule { }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Color, Label, MultiDataSet } from 'ng2-charts';
 
 
 @Component({
@@ -10,16 +9,8 @@ import { Color, Label, MultiDataSet } from 'ng2-charts';
 })
 export class GraficalComponent {
 
-  // Doughnut
-  public doughnutChartLabels: Label[] = [ 'Download Sales', 'In-Store Sales', 'Mail-Order Sales' ];
-  public doughnutChartData: MultiDataSet = [
-      [ 350, 450, 100 ]
+  public labels1: string[] = [ 'Pan', 'Gaseosa', 'Queso' ];
+  public data1 = [
+    [ 10, 15, 40 ]
   ];
-
-  public colors: Color[] = [
-    {
-      backgroundColor: ['#6857E6', '#009FEE', '#F02059']
-    }
-  ];
-
 }
