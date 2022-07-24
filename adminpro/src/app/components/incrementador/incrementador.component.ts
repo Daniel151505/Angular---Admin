@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-incrementador',
@@ -6,10 +6,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styles: [
   ]
 })
-export class IncrementadorComponent  {
+export class IncrementadorComponent implements OnInit {
 
   @Input('valor') progreso: number = 10;
+  @Input() btnClass: string = 'btn-primary';
+
   @Output('valor') valorSalida: EventEmitter<number> = new EventEmitter()
+
+  ngOnInit() {
+    this.btnClass = `btn ${ this.btnClass }`;
+  }
 
   get getPorcentaje() {
     return `${ this.progreso }%`;
