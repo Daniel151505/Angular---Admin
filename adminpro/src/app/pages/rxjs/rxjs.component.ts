@@ -12,9 +12,20 @@ export class RxjsComponent  {
 
   constructor() {
 
-    const obs$ = new Observable( observer => {
+    this.retornaObservable().pipe(
+      retry(2)
+    ).subscribe(
+      valor => console.log('Subs:', valor),
+      error => console.warn('Error:', error),
+      () => console.info('Obs terminado')
+    );
 
-      let i = -1;
+   }
+
+   retornaObservable(): Observable<number> {
+    let i = -1;
+
+    return new Observable<number>( observer => {
 
       const intervalo = setInterval( () => {
           i++;
@@ -26,20 +37,12 @@ export class RxjsComponent  {
           }
 
           if(i === 2) {
-            i = 0
             observer.error(' i llego al valor de 2')
           }
 
         }, 1000)
     });
 
-    obs$.pipe(
-      retry(2)
-    ).subscribe(
-      valor => console.log('Subs:', valor),
-      error => console.warn('Error:', error),
-      () => console.info('Obs terminado')
-    );
 
    }
 
