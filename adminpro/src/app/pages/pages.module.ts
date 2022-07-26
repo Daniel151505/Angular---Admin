@@ -10,6 +10,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { GraficalComponent } from './grafical/grafical.component';
 import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromesasComponent } from './promesas/promesas.component';
 
 
 @NgModule({
@@ -18,14 +19,17 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     ProgressComponent,
     GraficalComponent,
     PagesComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromesasComponent
   ],
   exports: [
     DashboardComponent,
     ProgressComponent,
     GraficalComponent,
     PagesComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromesasComponent
+
   ],
   imports: [
     CommonModule,
