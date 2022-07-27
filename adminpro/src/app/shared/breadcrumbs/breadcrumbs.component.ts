@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivationEnd, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
@@ -8,27 +9,32 @@ import { filter, map } from 'rxjs/operators';
   styles: [
   ]
 })
-export class BreadcrumbsComponent {
+export class BreadcrumbsComponent implements OnDestroy {
 
   public titulo!: string;
+  public tituloSubs$: Subscription;
 
   constructor(
     private router: Router
    ) {
-    this.getArgumentosRuta();
+    this.tituloSubs$ = this.getArgumentosRuta()
+      .subscribe( ({titulo}) => {
+        this.titulo = titulo
+        document.title = `Adminpro - ${titulo}` ;
+    }); ;
   }
 
   getArgumentosRuta() {
-    this.router.events
+    return this.router.events
     .pipe(
       filter<any>(event => event instanceof ActivationEnd),
       filter((event: ActivationEnd) => event.snapshot.firstChild === null ),
       map( (event: ActivationEnd) => event.snapshot.data )
     )
-    .subscribe( ({titulo}) => {
-      this.titulo = titulo
-      document.title = `Adminpro - ${titulo}` ;
-    });
+  }
+
+  ngOnDestroy() {
+    this.tituloSubs$.unsubscribe();
   }
 
 }
