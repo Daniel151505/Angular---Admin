@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const dbConnection = async () => {
 
     try {
-        mongoose.connect('mongodb+srv://mean_user:WJYCVP@cluster0.1dwle.mongodb.net/hospitaldb');
+        mongoose.connect(process.env.DB_CNN);
         console.log('DB Online')
     } catch (error) {
         console.error(error);
@@ -16,3 +16,4 @@ const dbConnection = async () => {
 module.exports = {
     dbConnection
 }
+
