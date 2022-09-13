@@ -8,12 +8,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
+  public formSubmitted = false;
+
   public registerForm = this.fb.group({
     nombre: ['Sara', Validators.required ],
-    email: ['test001@gmail.com', Validators.required ],
+    email: ['test001@gmail.com', [Validators.required, Validators.email] ],
     password: ['123', Validators.required ],
     password2: ['123', Validators.required ],
-    terminos: [ false, Validators.required ]
+    terminos: [ false, Validators.requiredTrue ]
   })
 
   constructor(
@@ -21,10 +23,20 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   crearUsuario() {
+    this.formSubmitted = true;
     console.log( this.registerForm.value );
+
   }
 
   ngOnInit(): void {
+  }
+
+  campoNoValido( campo: string ): boolean {
+    if (this.registerForm.get(campo)!.invalid && this.formSubmitted) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }
